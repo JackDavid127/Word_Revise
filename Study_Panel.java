@@ -1,50 +1,48 @@
 import java.io.*;
 import java.util.*;
 import java.awt.*;
+
 import javax.swing.*;
+
 import java.awt.event.*;
+
 import javazoom.jl.player.Player;
 
 
 public class Study_Panel extends JFrame{
-	String []ccc={"apple","apple1","qqq","ttt"};
-	String []cccc={"rabbit","rrr","aaa","bbb"};
-	//public Core c;
-	//public Database base;
-	//public Question nowq;
-	public Word r=new Word("n","p","m","e","s",new Date(),0);
+	public Core c;
+	public Database base;
+	public Question nowq;
 	public String list_name;
 	public int numq;
-	public Question nowq=new Question("apple",ccc,r,0,true);
-	public Question nowq1=new Question("rabbit",cccc,r,0,false);
-	public boolean assured=false; //ÊÇ·ñÒÑ¾­½øĞĞ»ØÒä²âÊÔ
+	public boolean assured=false; //Â Â«âˆ‘Ã’â€œâ€”Ã¦â‰ Î©Â¯â€“â€“ÂªÃ¿â€œâ€°â‰¤â€šÂ â€˜
 	public Box box= Box.createVerticalBox();
 	public JTextField title=new JTextField(); //
 	private JButton counter = 	 new JButton();	
-	public JButton dontknow=new JButton("I Don't Remember"); //²»ÈÏÊ¶¸Ãµ¥´Ê£¬Ö±½Ó·µ»Ø´íÎó
-	public JButton donknow=new JButton("I Don't Remember"); //²»ÈÏÊ¶¸Ãµ¥´Ê£¬Ö±½Ó·µ»Ø´íÎó
-	public JButton know =new JButton("I Remember."); //Ñ¡ÏîA
-	public JTextField time=new JTextField("µ¹¼ÆÊ±"); //µ¹¼ÆÊ±¡¢´ÎÊı£¿
+	public JButton dontknow=new JButton("I Don't Remember"); //â‰¤ÂªÂ»Å“Â âˆ‚âˆâˆšÂµâ€¢Â¥Â Â£Â¨Ã·Â±Î©â€âˆ‘ÂµÂªÃ¿Â¥ÃŒÅ’Ã›
+	public JButton donknow=new JButton("I Don't Remember"); //â‰¤ÂªÂ»Å“Â âˆ‚âˆâˆšÂµâ€¢Â¥Â Â£Â¨Ã·Â±Î©â€âˆ‘ÂµÂªÃ¿Â¥ÃŒÅ’Ã›
+	public JButton know =new JButton("I Remember."); //â€”Â°Å“Ã“A
+	public JTextField time=new JTextField("ÂµÏ€Âºâˆ†Â Â±"); //ÂµÏ€Âºâˆ†Â Â±Â°Â¢Â¥Å’Â ËÂ£Ã¸
 	public JPanel Ptitle=new JPanel(); //title
 	public JPanel Poption=new JPanel(); //option
-	public JPanel Pcontent=new JPanel(); //Ñ¡Ïî+Í¼
-	//Ñ¡ÔñÄ£Ê½
-	public JButton option1=new JButton(); //Ñ¡ÏîA
-	public JButton option2=new JButton(); //Ñ¡ÏîB
-	public JButton option3=new JButton(); //Ñ¡ÏîC
-	public JButton option4=new JButton(); //Ñ¡ÏîD
+	public JPanel Pcontent=new JPanel(); //â€”Â°Å“Ã“+Ã•Âº
+	//â€”Â°â€˜Ã’Æ’Â£Â Î©
+	public JButton option1=new JButton(); //â€”Â°Å“Ã“A
+	public JButton option2=new JButton(); //â€”Â°Å“Ã“B
+	public JButton option3=new JButton(); //â€”Â°Å“Ã“C
+	public JButton option4=new JButton(); //â€”Â°Å“Ã“D
 	public JPanel option1s =new JPanel();
 	public JPanel option2s =new JPanel();
 	public JPanel option3s =new JPanel();
 	public JPanel option4s =new JPanel();
 	public Box Pselect=Box.createVerticalBox();
-	//Ìî¿ÕÄ£Ê½	
-	public JTextField spell=new JTextField(""); //Æ´Ğ´¿ò
+	//ÃƒÃ“Ã¸â€™Æ’Â£Â Î©	
+	public JTextField spell=new JTextField(""); //âˆ†Â¥â€“Â¥Ã¸Ãš
 	public JPanel spells = new JPanel();
-	public JButton spellc=new JButton("OK"); //Æ´Ğ´È·ÈÏ¿ò
+	public JButton spellc=new JButton("OK"); //âˆ†Â¥â€“Â¥Â»âˆ‘Â»Å“Ã¸Ãš
 	public JPanel spellcs = new JPanel();
-	public Box Pspell=Box.createVerticalBox(); //Æ´Ğ´Ö÷
-	ImageIcon img = new ImageIcon("play.jpg");//Í¼Æ¬µÄÂ·¾¶²»ÕıÈ·
+	public Box Pspell=Box.createVerticalBox(); //âˆ†Â¥â€“Â¥Ã·Ëœ
+	ImageIcon img = new ImageIcon("play.jpg");//Ã•Âºâˆ†Â¨ÂµÆ’Â¬âˆ‘Ã¦âˆ‚â‰¤Âªâ€™ËÂ»âˆ‘
 	JButton pron=new JButton(img);
 	int num=0;
 	//expression
@@ -53,16 +51,17 @@ public class Study_Panel extends JFrame{
 	public JTextField English =new JTextField(); 
 	public JButton Next=new JButton("Next");
 	public JButton Return=new JButton("Return");
-	public JTextField Sentence =new JTextField(); //¿ÉÀ©Õ¹ÎªÊı×é
+	public JTextField Sentence =new JTextField(); //Ã¸â€¦Â¿Â©â€™Ï€Å’â„¢Â Ëâ—ŠÃˆ
 	public JPanel PEng=new JPanel(); //title
 	public JPanel PChin=new JPanel(); //title
 	public JPanel PSen=new JPanel(); //title
 	public JPanel PNext=new JPanel(); //title
-	java.util.Timer timer = new java.util.Timer();								//ÉèÖÃµ¹¼ÆÊ±
-	private Player player; //ÒôÀÖ²¥·ÅÆ÷			
+	private String audio_path;
+	java.util.Timer timer = new java.util.Timer();								//â€¦Ã‹Ã·âˆšÂµÏ€Âºâˆ†Â Â±
+	private Player player; //â€œÃ™Â¿Ã·â‰¤â€¢âˆ‘â‰ˆâˆ†Ëœ			
 	
 	
-	public void Display(int sec){													//¸ü¸Äµ¹¼ÆÊ±ÏÔÊ¾µÄÊ±¼ä
+	public void Display(int sec){													//âˆÂ¸âˆÆ’ÂµÏ€Âºâˆ†Â Â±Å“â€˜Â Ã¦ÂµÆ’Â Â±Âºâ€°
 		counter.setText("    Time: "+sec+"   ");
 	}
 	public void Play(String filename){
@@ -76,25 +75,21 @@ public class Study_Panel extends JFrame{
         }
 	}
 	public void Assure(){
-		//»ØÒä½çÃæ
+		//ÂªÃ¿â€œâ€°Î©ÃâˆšÃŠ
 		title=new JTextField(nowq.title); //
 		title.setFont(new Font("Buxton Sketch", 80, 80));
 		title.setBorder(null);
 		title.setEditable(false);
-		title.setHorizontalAlignment(JTextField.CENTER);	
+		title.setHorizontalAlignment(JTextField.CENTER);
 		Ptitle.add(title);
 		
-		//Poption.add(dontknow);
 		
-		counter.setBackground(null);												//ÉèÖÃµ¹¼ÆÊ±µÄ¹æ¸ñ
+		counter.setBackground(null);												//â€¦Ã‹Ã·âˆšÂµÏ€Âºâˆ†Â Â±ÂµÆ’Ï€ÃŠâˆÃ’
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
 		
-		//counter.setEditable(false);
 		Poption.add(counter);
-		
-		
 		donknow.setPreferredSize(new Dimension(250,50)); 
 		know.setPreferredSize(new Dimension(250,50)); 
 		Pselect.add(Box.createVerticalStrut(50));
@@ -107,25 +102,21 @@ public class Study_Panel extends JFrame{
 		Pcontent.add(Pselect);
 			
 		box.add(Ptitle);
-		box.add(Poption); //×óÓÒ
-		box.add(Pcontent); //×óÓÒ+ÉÏÏÂ
+		box.add(Poption); //â—ŠÃ›â€â€œ
+		box.add(Pcontent); //â—ŠÃ›â€â€œ+â€¦Å“Å“Â¬
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
-		setVisible(true);
-		
-		
-		
-		
+		setVisible(true);	
 	}
 	public void Choice(){
 		title=new JTextField(nowq.title); //
 		title.setFont(new Font("Buxton Sketch", 80, 80));
 		title.setBorder(null);
 		title.setEditable(false);
-		title.setHorizontalAlignment(JTextField.CENTER);	
+		title.setHorizontalAlignment(JTextField.CENTER);
 		Ptitle.add(title);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Í¼Æ¬µÄÂ·¾¶²»ÕıÈ·
+		ImageIcon img = new ImageIcon("play.jpg");//Ã•Âºâˆ†Â¨ÂµÆ’Â¬âˆ‘Ã¦âˆ‚â‰¤Âªâ€™ËÂ»âˆ‘
 		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 	    pron=new JButton(img);
 		pron.setContentAreaFilled(false);
@@ -133,21 +124,18 @@ public class Study_Panel extends JFrame{
 		pron.setBorder(BorderFactory.createRaisedBevelBorder()); 
 		Ptitle.add(pron);
 		Poption.add(dontknow);
-		counter.setBackground(null);												//ÉèÖÃµ¹¼ÆÊ±µÄ¹æ¸ñ
+		counter.setBackground(null);												//â€¦Ã‹Ã·âˆšÂµÏ€Âºâˆ†Â Â±ÂµÆ’Ï€ÃŠâˆÃ’
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
 		
-		//counter.setEditable(false);
 		Poption.add(counter);
-		//time.setEditable(false);
-		//Poption.add(time);
 		Pcontent.setLayout(new BorderLayout());
 		
-		option1=new JButton(nowq.choices[0]); //Ñ¡ÏîA		
-		option2=new JButton(nowq.choices[1]); //Ñ¡ÏîB
-		option3=new JButton(nowq.choices[2]); //Ñ¡ÏîC
-		option4=new JButton(nowq.choices[3]); //Ñ¡ÏîD
+		option1=new JButton(nowq.choices[0]); //â€”Â°Å“Ã“A		
+		option2=new JButton(nowq.choices[1]); //â€”Â°Å“Ã“B
+		option3=new JButton(nowq.choices[2]); //â€”Â°Å“Ã“C
+		option4=new JButton(nowq.choices[3]); //â€”Â°Å“Ã“D
 		option1.setPreferredSize(new Dimension(250,50)); 
 		option2.setPreferredSize(new Dimension(250,50)); 
 		option3.setPreferredSize(new Dimension(250,50)); 
@@ -165,17 +153,12 @@ public class Study_Panel extends JFrame{
 		Pselect.add(PNext);
 		Pcontent.add(Pselect);
 		box.add(Ptitle);
-		box.add(Poption); //×óÓÒ
-		box.add(Pcontent); //×óÓÒ+ÉÏÏÂ
+		box.add(Poption); //â—ŠÃ›â€â€œ
+		box.add(Pcontent); //â—ŠÃ›â€â€œ+â€¦Å“Å“Â¬
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
 		setVisible(true);
-		pron.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				Play("song.mp3");
-			}
-		});
+		
 		
 	}
 	public void Spell(){
@@ -186,7 +169,7 @@ public class Study_Panel extends JFrame{
 		title.setHorizontalAlignment(JTextField.CENTER);	
 		Ptitle.add(title);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Í¼Æ¬µÄÂ·¾¶²»ÕıÈ·
+		ImageIcon img = new ImageIcon("play.jpg");//Ã•Âºâˆ†Â¨ÂµÆ’Â¬âˆ‘Ã¦âˆ‚â‰¤Âªâ€™ËÂ»âˆ‘
 		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		pron=new JButton(img);
 		pron.setContentAreaFilled(false);
@@ -194,15 +177,11 @@ public class Study_Panel extends JFrame{
 		pron.setBorder(BorderFactory.createRaisedBevelBorder()); 
 		Ptitle.add(pron);
 		Poption.add(dontknow);
-		//time.setEditable(false);
-		//Poption.add(time);
 		
-		counter.setBackground(null);												//ÉèÖÃµ¹¼ÆÊ±µÄ¹æ¸ñ
+		counter.setBackground(null);												//â€¦Ã‹Ã·âˆšÂµÏ€Âºâˆ†Â Â±ÂµÆ’Ï€ÃŠâˆÃ’
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
-		
-		//counter.setEditable(false);
 		Poption.add(counter);
 		Pcontent.setLayout(new BorderLayout());
 		spell.setFont(new Font("Buxton Sketch", 40, 40));
@@ -210,7 +189,6 @@ public class Study_Panel extends JFrame{
 		spell.setPreferredSize(new Dimension(250,50)); 
 		spellc.setPreferredSize(new Dimension(100,50)); 
 		spells.add(spell);
-			
 		spellcs.add(spellc);
 		Pspell.add(Box.createVerticalStrut(120));
 		Pspell.add(spells);
@@ -218,24 +196,16 @@ public class Study_Panel extends JFrame{
 		//Return.setPreferredSize(new Dimension(100,50)); 
 		PNext.add(Return);
 		Pspell.add(PNext);
-		
+	
 		Pcontent.add(Pspell);
-		
 		box.add(Ptitle);
-		box.add(Poption); //×óÓÒ
-		box.add(Pcontent); //×óÓÒ+ÉÏÏÂ
+		box.add(Poption); //â—ŠÃ›â€â€œ
+		box.add(Pcontent); //â—ŠÃ›â€â€œ+â€¦Å“Å“Â¬
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
 		setVisible(true);
-		spell.requestFocus();  //ÉèÖÃ¹â±êÎ»ÖÃ
-		pron.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				System.out.println("baaa");
-				Play("song.mp3");
-				System.out.println("aaa");
-			}
-		});
+		spell.requestFocus();  //â€¦Ã‹Ã·âˆšÏ€â€šÂ±ÃÅ’ÂªÃ·âˆš
+		
 	}
 	public void Start(){
 		setSize(800,600);
@@ -254,24 +224,22 @@ public class Study_Panel extends JFrame{
 		Pspell.removeAll();
 		PNext.removeAll();
 		spell.setText("");
-	//	if(assured==false) {
-	//		nowq=getNewQ();
-	//	}
-		if(num==1) 
-			nowq=nowq1;
+		if(assured==false) {
+			nowq=c.getNewQ();
+		}
 		if (nowq!=null){
 			if(nowq.needAssure==true && assured==false){
 				Assure();
 				timer = new java.util.Timer();	
-				timer.schedule(new TimerTask(){												//µ¹¼ÆÊ±µÄÊ±¼ä10s
+				timer.schedule(new TimerTask(){												//ÂµÏ€Âºâˆ†Â Â±ÂµÆ’Â Â±Âºâ€°10s
 					int x = 10;
-					public void run(){														//Ã¿¾­¹ı1s£¬Ôò¸üĞÂ¼ÆÊ±Æ÷ÏÔÊ¾
+					public void run(){														//âˆšÃ¸Ã¦â‰ Ï€Ë1sÂ£Â¨â€˜ÃšâˆÂ¸â€“Â¬Âºâˆ†Â Â±âˆ†ËœÅ“â€˜Â Ã¦
 						Display(x);
 						x--;
-						if(x == -1){														//Ê±¼äºÄ¾¡£¬ÔòÍ£Ö¹¼ÆÊ±Æ÷µÄ¹¤×÷,×Ô¶¯ÅĞ¶Ï´íÎó
+						if(x == -1){														//Â Â±Âºâ€°âˆ«Æ’Ã¦Â°Â£Â¨â€˜ÃšÃ•Â£Ã·Ï€Âºâˆ†Â Â±âˆ†ËœÂµÆ’Ï€Â§â—ŠËœ,â—Šâ€˜âˆ‚Ã˜â‰ˆâ€“âˆ‚Å“Â¥ÃŒÅ’Ã›
 							cancel();
 							nowq.obj.Incorrect();
-							num=1;
+							num++;
 							setVisible(false);
 							Expression();
 							
@@ -289,15 +257,15 @@ public class Study_Panel extends JFrame{
 					Choice();
 				}
 				timer = new java.util.Timer();	
-				timer.schedule(new TimerTask(){												//µ¹¼ÆÊ±µÄÊ±¼ä10s
+				timer.schedule(new TimerTask(){												//ÂµÏ€Âºâˆ†Â Â±ÂµÆ’Â Â±Âºâ€°10s
 					int x = 15;
-					public void run(){														//Ã¿¾­¹ı1s£¬Ôò¸üĞÂ¼ÆÊ±Æ÷ÏÔÊ¾
+					public void run(){														//âˆšÃ¸Ã¦â‰ Ï€Ë1sÂ£Â¨â€˜ÃšâˆÂ¸â€“Â¬Âºâˆ†Â Â±âˆ†ËœÅ“â€˜Â Ã¦
 						Display(x);
 						x--;
-						if(x == -1){														//Ê±¼äºÄ¾¡£¬ÔòÍ£Ö¹¼ÆÊ±Æ÷µÄ¹¤×÷,×Ô¶¯ÅĞ¶Ï´íÎó
+						if(x == -1){														//Â Â±Âºâ€°âˆ«Æ’Ã¦Â°Â£Â¨â€˜ÃšÃ•Â£Ã·Ï€Âºâˆ†Â Â±âˆ†ËœÂµÆ’Ï€Â§â—ŠËœ,â—Šâ€˜âˆ‚Ã˜â‰ˆâ€“âˆ‚Å“Â¥ÃŒÅ’Ã›
 							cancel();
 							nowq.obj.Incorrect();
-							num=1;
+							num++;
 							setVisible(false);
 							Expression();
 							
@@ -309,76 +277,22 @@ public class Study_Panel extends JFrame{
 			
 		}
 		else{
-			//Îö¹¹´Ë½çÃæÌøµ½Éú´Ê±í½çÃæ
+			//Å’Ë†Ï€Ï€Â¥Ã€Î©ÃâˆšÃŠÃƒÂ¯ÂµÎ©â€¦Ë™Â¥Â Â±ÃŒÎ©ÃâˆšÃŠ
+			//Word[] WordHead = getWordList();
+			Word[] WordHead={new Word("aaa","bbb","aaa","aaa","aaa",new Date(),1)};
+			//dispose();
+			System.out.println("end");
+			int n=1;
+			//repaint();
+			Final_Panel final_panel = new Final_Panel(WordHead,n);
+			getContentPane().add(final_panel, BorderLayout.CENTER);
+			setVisible(true);
+			System.out.println("aaa");
+			
+			
 		}
-	}
-	public void Expression(){
-		PEng.removeAll();
-		PChin.removeAll();
-		PSen.removeAll();
-		PNext.removeAll();
-		box.removeAll();
 		
-		English =new JTextField(nowq.obj.name); 
-		English.setFont(new Font("Buxton Sketch", 80, 80));
-		English.setBorder(null);
-		English.setEditable(false);
-		English.setHorizontalAlignment(JTextField.CENTER);
-		PEng.add(English);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Í¼Æ¬µÄÂ·¾¶²»ÕıÈ·
-		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
-		pron=new JButton(img);
-		pron.setContentAreaFilled(false);
-		pron.setBorderPainted(false);
-		pron.setBorder(BorderFactory.createRaisedBevelBorder()); 
-		PEng.add(pron);
-		
-		Chinese.setFont(new Font("Buxton Sketch", 60, 60));
-		Chinese.setBorder(null);
-		Chinese.setEditable(false);
-		Chinese.setHorizontalAlignment(JTextField.CENTER);	
-		PChin.add(Chinese);
-		Sentence =new JTextField(nowq.obj.expre);
-		Sentence.setFont(new Font("Buxton Sketch", 30, 30));
-		Sentence.setBorder(null);
-		Sentence.setEditable(false);
-		Sentence.setHorizontalAlignment(JTextField.CENTER);	
-		PSen.add(Sentence);
-		Next.setPreferredSize(new Dimension(200,50)); 
-		PNext.add(Next);
-		Return.setPreferredSize(new Dimension(200,50)); 
-		PNext.add(Return);
-				
-		box.add(PEng);
-		box.add(PChin);
-		box.add(Box.createVerticalStrut(80));
-		box.add(PSen);
-		box.add(PNext);
-		getContentPane().setLayout(new BorderLayout(5,5));
-		getContentPane().add(box, BorderLayout.CENTER);
-		setVisible(true);
-		setAlwaysOnTop(true);
-		pron.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				Play("song.mp3");
-			}
-		});
-		Next.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				repaint();
-				Start();
-			}
-		});
-	}
-	public Study_Panel(){
-   //public Study_Panel(Database b,String ln,int n){
-		//base=b;list_name=ln;numq=n;
-		//c=new Core(b,ln,n);
-		
-		Start();	
 		
 		donknow.addActionListener(new ActionListener(){
 			@Override
@@ -386,7 +300,7 @@ public class Study_Panel extends JFrame{
 				
 				timer.cancel();
 				nowq.obj.Incorrect();
-				num=1;
+				num++;
 				setVisible(false);
 				repaint();
 				Expression();
@@ -408,7 +322,7 @@ public class Study_Panel extends JFrame{
 			public void actionPerformed(ActionEvent e){
 				timer.cancel();
 				nowq.obj.Incorrect();
-				num=1;
+				num++;
 				repaint();
 				Expression();
 			}
@@ -416,7 +330,8 @@ public class Study_Panel extends JFrame{
 		pron.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				Play("song.mp3");
+				audio_path = "./audio/";
+				Play(audio_path+nowq.title+".mp3");
 			}
 		});
 		option1.addActionListener(new ActionListener(){
@@ -426,9 +341,9 @@ public class Study_Panel extends JFrame{
 					System.out.println("ok");
 				if(nowq.ans==0){
 					nowq.obj.Correct();
-					//JOptionPane.showMessageDialog(null,"´ğ¶ÔÁË£¡");
+					//JOptionPane.showMessageDialog(null,"Â¥ï£¿âˆ‚â€˜Â¡Ã€Â£Â°");
 					//getContentPane().remove(box);
-					num=1;
+					num++;
 				    //repaint();
 					Start();
 					
@@ -492,7 +407,7 @@ public class Study_Panel extends JFrame{
 				String Myans = spell.getText();
 				if(Myans.equals(nowq.obj.name)) {
 					nowq.obj.Correct();
-					num=1;
+					num++;
 					Start();
 				}
 				else {
@@ -511,8 +426,166 @@ public class Study_Panel extends JFrame{
 			}
 		});
 	}
+	public void Expression(){
+		PEng.removeAll();
+		PChin.removeAll();
+		PSen.removeAll();
+		PNext.removeAll();
+		box.removeAll();
+		
+		English =new JTextField(nowq.obj.name); 
+		English.setFont(new Font("Buxton Sketch", 80, 80));
+		English.setBorder(null);
+		English.setEditable(false);
+		English.setHorizontalAlignment(JTextField.CENTER);
+		PEng.add(English);
+		//English.setBackground(Color.);
+		//PEng.setBackground(Color.);
+		
+		ImageIcon img = new ImageIcon("play.jpg");//Ã•Âºâˆ†Â¨ÂµÆ’Â¬âˆ‘Ã¦âˆ‚â‰¤Âªâ€™ËÂ»âˆ‘
+		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+		pron=new JButton(img);
+		pron.setContentAreaFilled(false);
+		pron.setBorderPainted(false);
+		pron.setBorder(BorderFactory.createRaisedBevelBorder()); 
+		PEng.add(pron);
+		
+		Chinese.setFont(new Font("Buxton Sketch", 60, 60));
+		Chinese.setBorder(null);
+		Chinese.setEditable(false);
+		Chinese.setHorizontalAlignment(JTextField.CENTER);	
+		
+		PChin.add(Chinese);
+		Sentence =new JTextField(nowq.obj.expre);
+		Sentence.setFont(new Font("Buxton Sketch", 30, 30));
+		Sentence.setBorder(null);
+		Sentence.setEditable(false);
+		Sentence.setHorizontalAlignment(JTextField.CENTER);	
+		
+		PSen.add(Sentence);
+		
+		Next.setPreferredSize(new Dimension(200,50)); 
+		PNext.add(Next);
+		Return.setPreferredSize(new Dimension(200,50)); 
+		PNext.add(Return);		
+		box.add(PEng);
+		box.add(PChin);
+		box.add(Box.createVerticalStrut(80));
+		box.add(PSen);
+		box.add(PNext);
+		getContentPane().setLayout(new BorderLayout(5,5));
+		getContentPane().add(box, BorderLayout.CENTER);
+		setVisible(true);
+		setAlwaysOnTop(true);
+		pron.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				Play("song.mp3");
+			}
+		});
+		Next.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				repaint();
+				Start();
+			}
+		});
+	}
+	
+   public Study_Panel(Database b,String ln,int n){
+		base=b;list_name=ln;numq=n;
+		 //c=new Core(b,ln,n);	
+		Start();	
+	}
+	class Final_Panel extends Panel{
+		private Box north_box = Box.createVerticalBox();
+		private JTextField title = new JTextField("Congratulations! You've finished task today!");
+		private JTextField note = new JTextField("          Please choose words you want to revise again:");
+		private ScrollPane list_pane = new ScrollPane(ScrollPane.SCROLLBARS_AS_NEEDED);
+		private Box list_box = Box.createVerticalBox();
+		private Box east_box = Box.createVerticalBox();
+		private Box west_box = Box.createHorizontalBox();
+		private JButton submit_button = new JButton("Submit");
+		private Box south_box = Box.createHorizontalBox();
+		private JTextField continue_text = new JTextField("          Do you want to continue?");
+		private JButton yes_button = new JButton("Yes");
+		private JButton no_button = new JButton("No");
+		
+		Final_Panel(Word[] final_words, int n){
+			this.setLayout(new BorderLayout());
+			//this.setBackground(Color.);
+			title.setFont(new Font("Buxton Sketch",30,30));
+			title.setBorder(null);
+			title.setEditable(false);
+			title.setHorizontalAlignment(JTextField.CENTER);
+			//title.setBackground(Color.);
+			
+			note.setFont(new Font("Buxton Sketch",16,16));
+			note.setBorder(null);
+			note.setEditable(false);
+			note.setHorizontalAlignment(JTextField.LEFT);
+			//note.setBackground(Color.);
+			
+			//north_box.setBackground(Color.);
+			north_box.add(Box.createVerticalStrut(20));
+			north_box.add(title);
+			north_box.add(Box.createVerticalStrut(20));
+			north_box.add(note);
+		    this.add(north_box, BorderLayout.NORTH);
+		    
+		    east_box.add(Box.createRigidArea(new Dimension(200, 200)));
+		    east_box.add(submit_button);
+		    this.add(east_box, BorderLayout.EAST);
+		    
+		    west_box.add(Box.createHorizontalStrut(50));
+		    this.add(west_box, BorderLayout.WEST);
+		    
+		    continue_text.setFont(new Font("Buxton Sketch",16,16));
+		    continue_text.setBorder(null);
+		    continue_text.setEditable(false);
+		    continue_text.setHorizontalAlignment(JTextField.LEFT);
+		    //continue_text.setBackground(Color.);
+			south_box.add(continue_text);
+		    south_box.add(yes_button);
+		    south_box.add(Box.createRigidArea(new Dimension(100, 100)));
+		    south_box.add(no_button);
+		    south_box.add(Box.createHorizontalStrut(200));
+		    this.add(south_box, BorderLayout.SOUTH);
+		    
+		    for(int i = 0; i < n; i++)
+		    {
+		    	if(final_words[i].wrongCount != 0)
+		    	    list_box.add(new Checkbox(final_words[i].name, true));
+		    	else
+		    		 list_box.add(new Checkbox(final_words[i].name, false));
+		    }
+		    
+		    list_pane.add(list_box);
+		    this.add(list_pane, BorderLayout.CENTER);
+		    
+		    submit_button.addActionListener(new ActionListener(){
+				@Override
+			    public void actionPerformed(ActionEvent e){
+					
+				}
+			});
+		    yes_button.addActionListener(new ActionListener(){
+				@Override
+			    public void actionPerformed(ActionEvent e){
+					dispose();
+					new Word_Frame();
+				}
+			});
+		    no_button.addActionListener(new ActionListener(){
+				@Override
+			    public void actionPerformed(ActionEvent e){
+					System.exit(0);
+				}
+			});
+		}
+	}
 
-	public static void main(String []args){
+	/*public static void main(String []args){
 		//Question q
 		Study_Panel gui=new Study_Panel();
 		gui.addWindowListener(new WindowAdapter(){
@@ -520,5 +593,5 @@ public class Study_Panel extends JFrame{
 				System.exit(0);//Quit the application
 			}
 		});
-	}
+	}*/
 }

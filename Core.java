@@ -12,12 +12,17 @@ public class Core{
 	public Question getNewQ(){
 		if(Wordlist==null){
 			Wordlist=base.Prepare(list_name,numw);
+			if(Wordlist==null){
+				System.out.println("Wordlist null!");
+				return null;
+			}
 			isok=new boolean[Wordlist.length];
 			for (int i=0;i<Wordlist.length;i++) isok[i]=false;
 			countok=0;
 		}
 		Random tmp=new Random();
 		int tag,i,j;
+		//System.out.println("getNewQ: length="+Wordlist.length);
 		while (true){
 			tag=tmp.nextInt(Wordlist.length);
 			if(Wordlist[tag].phase!=4) break;
@@ -26,6 +31,7 @@ public class Core{
 				if(countok==Wordlist.length) return null;
 			}
 		}
+		System.out.println("tag="+tag+" name="+Wordlist[tag].name);
 		if(Wordlist[tag].phase==3) return new Question(Wordlist[tag].mean,null,Wordlist[tag],0,false);
 		String opt[]=new String[4];
 		int ans=tmp.nextInt(4);
@@ -34,6 +40,7 @@ public class Core{
 		else opt[ans]=Wordlist[tag].name;
 		optt[0]=optt[1]=optt[2]=optt[3]=-1;
 		optt[ans]=tag;
+		//System.out.
 		for (i=0;i<4;i++){
 			if(i==ans) continue;
 			while (true){

@@ -31,11 +31,11 @@ public class Word_Frame extends JFrame {
 	private Choice task_list = new Choice();
 	private JTextField task_text=new JTextField("Task today");
 	private int n;
-	private String bookname;
+	private String bookname = "cet4";
 	private Study_Panel study_panel; 
 	private String import_name;
 	private Catch catch_example;
-	//public Panel list_set = new Panel();//缺少当前状态以及从study返回主界面导入新单词库
+	//public Panel list_set = new Panel();//缂哄皯褰撳墠鐘舵�佷互鍙婁粠study杩斿洖涓荤晫闈㈠鍏ユ柊鍗曡瘝搴�
 	//public JTextArea list_status=new JTextArea();//
 	
 	private Panel start_panel = new Panel();
@@ -44,6 +44,7 @@ public class Word_Frame extends JFrame {
 	public Word_Frame(){
 		setSize(800, 600);
 		setTitle("Word Revise");
+		n=10;
 		
 		title.setFont(new Font("Buxton Sketch",50,100));
 		title.setBackground(Color.white);
@@ -57,8 +58,8 @@ public class Word_Frame extends JFrame {
 	    import_text.setBorder(null);
 	    import_text.setEditable(false);
 	    import_text.setHorizontalAlignment(JTextField.CENTER);
-	    import_list.add("四级词汇书");
-	    import_list.add("六级词汇书");//
+	    import_list.add("鍥涚骇璇嶆眹涔�");
+	    import_list.add("鍏骇璇嶆眹涔�");//
 	    import_panel.setBackground(Color.white);
 	    import_panel.add(import_text);
 	    import_panel.add(import_list);
@@ -116,21 +117,23 @@ public class Word_Frame extends JFrame {
 		    public void actionPerformed(ActionEvent e){
 				dispose();
 			    Database b = new Database();
+				catch_example = new Catch();
+				if(!b.isStored(bookname)){
+					b.creatNewList(bookname);
+					try {
+						catch_example.loadBook(b, bookname, import_name);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						System.err.println("Error occured in catch_example");
+						e1.printStackTrace();
+					}
+				}
 				study_panel = new Study_Panel(b, bookname, n);
 				study_panel.addWindowListener(new WindowAdapter(){
 					public void windowClosing(WindowEvent e){
 						System.exit(0);//Quit the application
 					}
 				});
-				catch_example = new Catch();
-				b.creatNewList(bookname);
-				try {
-					catch_example.loadBook(b, bookname, import_name);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					System.err.println("Error occured in catch_example");
-					e1.printStackTrace();
-				}
 			}
 		});
 		

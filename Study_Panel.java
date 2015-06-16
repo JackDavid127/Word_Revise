@@ -15,34 +15,34 @@ public class Study_Panel extends JFrame{
 	public Question nowq;
 	public String list_name;
 	public int numq;
-	public boolean assured=false; // «∑Ò“—æ≠Ω¯––ªÿ“‰≤‚ ‘
+	public boolean assured=false; //聽芦鈭懨掆�溾�斆︹墵惟炉鈥撯�撀库�溾�扳墹鈥毬犫��
 	public Box box= Box.createVerticalBox();
 	public JTextField title=new JTextField(); //
 	private JButton counter = 	 new JButton();	
-	public JButton dontknow=new JButton("I Don't Remember"); //≤ª»œ ∂∏√µ•¥ £¨÷±Ω”∑µªÿ¥ÌŒÛ
-	public JButton donknow=new JButton("I Don't Remember"); //≤ª»œ ∂∏√µ•¥ £¨÷±Ω”∑µªÿ¥ÌŒÛ
-	public JButton know =new JButton("I Remember."); //—°œÓA
-	public JTextField time=new JTextField("µπº∆ ±"); //µπº∆ ±°¢¥Œ ˝£ø
+	public JButton dontknow=new JButton("I Don't Remember"); //鈮ぢ慌撀犫垈鈭忊垰碌鈥⒙ヂ犅Ｂ仿蔽┾�濃垜碌陋每楼脤艗脹
+	public JButton donknow=new JButton("I Don't Remember"); //鈮ぢ慌撀犫垈鈭忊垰碌鈥⒙ヂ犅Ｂ仿蔽┾�濃垜碌陋每楼脤艗脹
+	public JButton know =new JButton("I Remember."); //鈥斅芭撁揂
+	public JTextField time=new JTextField("碌蟺潞鈭喡犅�"); //碌蟺潞鈭喡犅甭奥⒙ヅ捖犓澛Ｃ�
 	public JPanel Ptitle=new JPanel(); //title
 	public JPanel Poption=new JPanel(); //option
-	public JPanel Pcontent=new JPanel(); //—°œÓ+Õº
-	//—°‘Òƒ£ Ω
-	public JButton option1=new JButton(); //—°œÓA
-	public JButton option2=new JButton(); //—°œÓB
-	public JButton option3=new JButton(); //—°œÓC
-	public JButton option4=new JButton(); //—°œÓD
+	public JPanel Pcontent=new JPanel(); //鈥斅芭撁�+脮潞
+	//鈥斅扳�樏捚捖Ｂ犖�
+	public JButton option1=new JButton(); //鈥斅芭撁揂
+	public JButton option2=new JButton(); //鈥斅芭撁揃
+	public JButton option3=new JButton(); //鈥斅芭撁揅
+	public JButton option4=new JButton(); //鈥斅芭撁揇
 	public JPanel option1s =new JPanel();
 	public JPanel option2s =new JPanel();
 	public JPanel option3s =new JPanel();
 	public JPanel option4s =new JPanel();
 	public Box Pselect=Box.createVerticalBox();
-	//ÃÓø’ƒ£ Ω	
-	public JTextField spell=new JTextField(""); //∆¥–¥øÚ
+	//脙脫酶鈥櫰捖Ｂ犖�	
+	public JTextField spell=new JTextField(""); //鈭喡モ�撀ッ该�
 	public JPanel spells = new JPanel();
-	public JButton spellc=new JButton("OK"); //∆¥–¥»∑»œøÚ
+	public JButton spellc=new JButton("OK"); //鈭喡モ�撀ヂ烩垜禄艙酶脷
 	public JPanel spellcs = new JPanel();
-	public Box Pspell=Box.createVerticalBox(); //∆¥–¥÷˜
-	ImageIcon img = new ImageIcon("play.jpg");//Õº∆¨µƒ¬∑æ∂≤ª’˝»∑
+	public Box Pspell=Box.createVerticalBox(); //鈭喡モ�撀ッ匪�
+	ImageIcon img = new ImageIcon("play.jpg");//脮潞鈭喡灯捖垜忙鈭傗墹陋鈥櫵澛烩垜
 	JButton pron=new JButton(img);
 	int num=0;
 	//expression
@@ -51,17 +51,17 @@ public class Study_Panel extends JFrame{
 	public JTextField English =new JTextField(); 
 	public JButton Next=new JButton("Next");
 	public JButton Return=new JButton("Return");
-	public JTextField Sentence =new JTextField(); //ø…¿©’πŒ™ ˝◊È
+	public JTextField Sentence =new JTextField(); //酶鈥β柯┾�櫹�艗鈩⒙犓濃棅脠
 	public JPanel PEng=new JPanel(); //title
 	public JPanel PChin=new JPanel(); //title
 	public JPanel PSen=new JPanel(); //title
 	public JPanel PNext=new JPanel(); //title
 	private String audio_path;
-	java.util.Timer timer = new java.util.Timer();								//…Ë÷√µπº∆ ±
-	private Player player; //“Ù¿÷≤•∑≈∆˜			
+	java.util.Timer timer = new java.util.Timer();								//鈥γ嬅封垰碌蟺潞鈭喡犅�
+	private Player player; //鈥溍櫬棵封墹鈥⑩垜鈮堚垎藴			
 	
 	
-	public void Display(int sec){													//∏¸∏ƒµπº∆ ±œ‘ æµƒ ±º‰
+	public void Display(int sec){													//鈭徛糕垙茠碌蟺潞鈭喡犅迸撯�樎犆β灯捖犅甭衡��
 		counter.setText("    Time: "+sec+"   ");
 	}
 	public void Play(String filename){
@@ -75,7 +75,7 @@ public class Study_Panel extends JFrame{
         }
 	}
 	public void Assure(){
-		//ªÿ“‰ΩÁ√Ê
+		//陋每鈥溾�拔┟佲垰脢
 		title=new JTextField(nowq.title); //
 		title.setFont(new Font("Buxton Sketch", 80, 80));
 		title.setBorder(null);
@@ -84,7 +84,7 @@ public class Study_Panel extends JFrame{
 		Ptitle.add(title);
 		
 		
-		counter.setBackground(null);												//…Ë÷√µπº∆ ±µƒπÊ∏Ò
+		counter.setBackground(null);												//鈥γ嬅封垰碌蟺潞鈭喡犅甭灯捪�脢鈭徝�
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
@@ -102,8 +102,8 @@ public class Study_Panel extends JFrame{
 		Pcontent.add(Pselect);
 			
 		box.add(Ptitle);
-		box.add(Poption); //◊Û”“
-		box.add(Pcontent); //◊Û”“+…œœ¬
+		box.add(Poption); //鈼娒涒�濃��
+		box.add(Pcontent); //鈼娒涒�濃��+鈥ε撆撀�
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
 		setVisible(true);	
@@ -116,7 +116,7 @@ public class Study_Panel extends JFrame{
 		title.setHorizontalAlignment(JTextField.CENTER);
 		Ptitle.add(title);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Õº∆¨µƒ¬∑æ∂≤ª’˝»∑
+		ImageIcon img = new ImageIcon("play.jpg");//脮潞鈭喡灯捖垜忙鈭傗墹陋鈥櫵澛烩垜
 		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 	    pron=new JButton(img);
 		pron.setContentAreaFilled(false);
@@ -124,7 +124,7 @@ public class Study_Panel extends JFrame{
 		pron.setBorder(BorderFactory.createRaisedBevelBorder()); 
 		Ptitle.add(pron);
 		Poption.add(dontknow);
-		counter.setBackground(null);												//…Ë÷√µπº∆ ±µƒπÊ∏Ò
+		counter.setBackground(null);												//鈥γ嬅封垰碌蟺潞鈭喡犅甭灯捪�脢鈭徝�
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
@@ -132,10 +132,10 @@ public class Study_Panel extends JFrame{
 		Poption.add(counter);
 		Pcontent.setLayout(new BorderLayout());
 		
-		option1=new JButton(nowq.choices[0]); //—°œÓA		
-		option2=new JButton(nowq.choices[1]); //—°œÓB
-		option3=new JButton(nowq.choices[2]); //—°œÓC
-		option4=new JButton(nowq.choices[3]); //—°œÓD
+		option1=new JButton(nowq.choices[0]); //鈥斅芭撁揂		
+		option2=new JButton(nowq.choices[1]); //鈥斅芭撁揃
+		option3=new JButton(nowq.choices[2]); //鈥斅芭撁揅
+		option4=new JButton(nowq.choices[3]); //鈥斅芭撁揇
 		option1.setPreferredSize(new Dimension(250,50)); 
 		option2.setPreferredSize(new Dimension(250,50)); 
 		option3.setPreferredSize(new Dimension(250,50)); 
@@ -153,8 +153,8 @@ public class Study_Panel extends JFrame{
 		Pselect.add(PNext);
 		Pcontent.add(Pselect);
 		box.add(Ptitle);
-		box.add(Poption); //◊Û”“
-		box.add(Pcontent); //◊Û”“+…œœ¬
+		box.add(Poption); //鈼娒涒�濃��
+		box.add(Pcontent); //鈼娒涒�濃��+鈥ε撆撀�
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
 		setVisible(true);
@@ -169,7 +169,7 @@ public class Study_Panel extends JFrame{
 		title.setHorizontalAlignment(JTextField.CENTER);	
 		Ptitle.add(title);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Õº∆¨µƒ¬∑æ∂≤ª’˝»∑
+		ImageIcon img = new ImageIcon("play.jpg");//脮潞鈭喡灯捖垜忙鈭傗墹陋鈥櫵澛烩垜
 		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		pron=new JButton(img);
 		pron.setContentAreaFilled(false);
@@ -178,7 +178,7 @@ public class Study_Panel extends JFrame{
 		Ptitle.add(pron);
 		Poption.add(dontknow);
 		
-		counter.setBackground(null);												//…Ë÷√µπº∆ ±µƒπÊ∏Ò
+		counter.setBackground(null);												//鈥γ嬅封垰碌蟺潞鈭喡犅甭灯捪�脢鈭徝�
 		counter.setContentAreaFilled(false);
 		counter.setFont(new Font("Buxton Sketch", 20, 20));
 		counter.setSize(150, 75);
@@ -199,12 +199,12 @@ public class Study_Panel extends JFrame{
 	
 		Pcontent.add(Pspell);
 		box.add(Ptitle);
-		box.add(Poption); //◊Û”“
-		box.add(Pcontent); //◊Û”“+…œœ¬
+		box.add(Poption); //鈼娒涒�濃��
+		box.add(Pcontent); //鈼娒涒�濃��+鈥ε撆撀�
 		getContentPane().setLayout(new BorderLayout(5,5));
 		getContentPane().add(box, BorderLayout.CENTER);
 		setVisible(true);
-		spell.requestFocus();  //…Ë÷√π‚±ÍŒª÷√
+		spell.requestFocus();  //鈥γ嬅封垰蟺鈥毬泵嵟捖封垰
 		
 	}
 	public void Start(){
@@ -231,12 +231,12 @@ public class Study_Panel extends JFrame{
 			if(nowq.needAssure==true && assured==false){
 				Assure();
 				timer = new java.util.Timer();	
-				timer.schedule(new TimerTask(){												//µπº∆ ±µƒ ±º‰10s
+				timer.schedule(new TimerTask(){												//碌蟺潞鈭喡犅甭灯捖犅甭衡��10s
 					int x = 10;
-					public void run(){														//√øæ≠π˝1s£¨‘Ú∏¸–¬º∆ ±∆˜œ‘ æ
+					public void run(){														//鈭毭该︹墵蟺藵1s拢篓鈥樏氣垙赂鈥撀衡垎聽卤鈭喫溑撯�樎犆�
 						Display(x);
 						x--;
-						if(x == -1){														// ±º‰∫ƒæ°£¨‘ÚÕ£÷πº∆ ±∆˜µƒπ§◊˜,◊‘∂Ø≈–∂œ¥ÌŒÛ
+						if(x == -1){														//聽卤潞鈥扳埆茠忙掳拢篓鈥樏毭暵Ｃ废�潞鈭喡犅扁垎藴碌茠蟺搂鈼娝�,鈼娾�樷垈脴鈮堚�撯垈艙楼脤艗脹
 							cancel();
 							nowq.obj.Incorrect();
 							num++;
@@ -257,12 +257,12 @@ public class Study_Panel extends JFrame{
 					Choice();
 				}
 				timer = new java.util.Timer();	
-				timer.schedule(new TimerTask(){												//µπº∆ ±µƒ ±º‰10s
+				timer.schedule(new TimerTask(){												//碌蟺潞鈭喡犅甭灯捖犅甭衡��10s
 					int x = 15;
-					public void run(){														//√øæ≠π˝1s£¨‘Ú∏¸–¬º∆ ±∆˜œ‘ æ
+					public void run(){														//鈭毭该︹墵蟺藵1s拢篓鈥樏氣垙赂鈥撀衡垎聽卤鈭喫溑撯�樎犆�
 						Display(x);
 						x--;
-						if(x == -1){														// ±º‰∫ƒæ°£¨‘ÚÕ£÷πº∆ ±∆˜µƒπ§◊˜,◊‘∂Ø≈–∂œ¥ÌŒÛ
+						if(x == -1){														//聽卤潞鈥扳埆茠忙掳拢篓鈥樏毭暵Ｃ废�潞鈭喡犅扁垎藴碌茠蟺搂鈼娝�,鈼娾�樷垈脴鈮堚�撯垈艙楼脤艗脹
 							cancel();
 							nowq.obj.Incorrect();
 							num++;
@@ -277,7 +277,7 @@ public class Study_Panel extends JFrame{
 			
 		}
 		else{
-			//Œˆππ¥ÀΩÁ√ÊÃ¯µΩ…˙¥ ±ÌΩÁ√Ê
+			//艗藛蟺蟺楼脌惟脕鈭毭娒兟滴┾�λ櫬ヂ犅泵屛┟佲垰脢
 			//Word[] WordHead = getWordList();
 			Word[] WordHead={new Word("aaa","bbb","aaa","aaa","aaa",new Date(),1)};
 			//dispose();
@@ -341,7 +341,7 @@ public class Study_Panel extends JFrame{
 					System.out.println("ok");
 				if(nowq.ans==0){
 					nowq.obj.Correct();
-					//JOptionPane.showMessageDialog(null,"¥∂‘¡À£°");
+					//JOptionPane.showMessageDialog(null,"楼铮库垈鈥樎∶�拢掳");
 					//getContentPane().remove(box);
 					num++;
 				    //repaint();
@@ -442,7 +442,7 @@ public class Study_Panel extends JFrame{
 		//English.setBackground(Color.);
 		//PEng.setBackground(Color.);
 		
-		ImageIcon img = new ImageIcon("play.jpg");//Õº∆¨µƒ¬∑æ∂≤ª’˝»∑
+		ImageIcon img = new ImageIcon("play.jpg");//脮潞鈭喡灯捖垜忙鈭傗墹陋鈥櫵澛烩垜
 		img.setImage(img.getImage().getScaledInstance(40, 40, Image.SCALE_DEFAULT));
 		pron=new JButton(img);
 		pron.setContentAreaFilled(false);
@@ -494,7 +494,7 @@ public class Study_Panel extends JFrame{
 	
    public Study_Panel(Database b,String ln,int n){
 		base=b;list_name=ln;numq=n;
-		 //c=new Core(b,ln,n);	
+		c=new Core(b,ln,n);	
 		Start();	
 	}
 	class Final_Panel extends Panel{

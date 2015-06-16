@@ -19,16 +19,17 @@ public class Catch {
 	}
 	
 	public void loadBook(Database D, String lname, String bookname) throws IOException{
+		bookname = "CET4";
 		FileInputStream book = new FileInputStream(new String(bookPath + bookname + ".txt"));
-		BufferedReader breader = new BufferedReader(new InputStreamReader(book, "UNICODE"));
+		BufferedReader breader = new BufferedReader(new InputStreamReader(book,"UNICODE" ));//
 		String tempString;
 		while ((tempString = breader.readLine()) != null) {
 			Pattern p = Pattern.compile("/");		
 			String[] word = p.split(tempString, 2);
-			System.out.println(word[0]);
+			//System.out.println(word[0]);
 			if(word[0].length() < 2) {
 				try {
-					Thread.sleep(5000);
+					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -54,19 +55,27 @@ public class Catch {
 		//Word tmp = new Word();
 		String pron = getPron(contentPart[5]);
 		String mean = getMean(contentPart[5]);
-		String expre, synonym;
+		String expre = "", synonym = "";
 		int i = 16, n = contentPart.length;
-		do{
-			expre = getExpre(contentPart[i]);
-			i++;
-		}while(expre.length() <= 5 && i< n);
-		i = 16;
-		do{
-			synonym = getSyno(contentPart[i]);
-			i++;
-		}while(synonym.length() <= 5 && i< n);
+		if (n>16){
+			do{
+				expre = getExpre(contentPart[i]);
+				i++;
+			}while(expre.length() <= 5 && i< n);
+			i = 16;
+			do{
+				synonym = getSyno(contentPart[i]);
+				i++;
+			}while(synonym.length() <= 5 && i< n);
+		}
+		//System.out.println("trWord: before pron="+pron);
+		//int tmpx=pron.lastIndexOf("/");
+		//pron=pron.substring(1, tmpx);
+		pron=pron.replace("\'","\'\'");
+		expre=expre.replace("\'","\'\'");
+		//System.out.println("trWord: pron="+pron);
 		Download(VoiceHead + name);
-		Word tmp = new Word(name, pron, mean, expre, synonym, new Date(), 0);
+		Word tmp = new Word(name, pron, mean, expre, synonym, new Date(), -1);
 		return tmp;
 	}
 	
@@ -75,9 +84,9 @@ public class Catch {
 		Pattern pattern = Pattern.compile(patternString);//, Pattern.LITERAL);
 		Matcher matcher = pattern.matcher( content );
 		StringBuffer buffer = new StringBuffer();
-		while (matcher.find()) {
+		if (matcher.find()) {
 			buffer.append(matcher.group(1));
-			buffer.append("\n");
+			//buffer.append("\n");
 		}
 		return buffer.toString();
 	}
@@ -87,9 +96,9 @@ public class Catch {
 		Pattern pattern = Pattern.compile(patternString);//, Pattern.LITERAL);
 		Matcher matcher = pattern.matcher( content );
 		StringBuffer buffer = new StringBuffer();
-		while (matcher.find()) {
+		if (matcher.find()) {
 			buffer.append(matcher.group(1));
-			buffer.append("\n");
+			//buffer.append("\n");
 		}
 		return buffer.toString();
 	}
@@ -101,9 +110,9 @@ public class Catch {
 		StringBuffer buffer = new StringBuffer();
 		if (matcher.find()) {
 			buffer.append(matcher.group(2));
-			buffer.append("\n");
-			buffer.append(matcher.group(4));
-			buffer.append("\n");
+			//buffer.append(" ");
+			//buffer.append(matcher.group(4));
+			//buffer.append("\n");
 		}
 		return buffer.toString();
 	}
@@ -136,13 +145,13 @@ public class Catch {
 		try { 
 			URL url = new URL(strUrl);  
 			InputStream stream = url.openStream();
-			String content = readAll( stream, ECODING ); //常见的编码包括 GB2312, UTF-8
+			String content = readAll( stream, ECODING ); //甯歌鐨勭紪鐮佸寘鎷� GB2312, UTF-8
 			return content;
 
 		}catch ( MalformedURLException e) { 
-			System.out.println("URL格式有错" ); 
+			System.out.println("URL鏍煎紡鏈夐敊" ); 
 		}catch (IOException ioe) {
-			System.out.println("IO异常" ); 
+			System.out.println("IO寮傚父" ); 
 		}
 		return "";
 	}
@@ -167,15 +176,15 @@ public class Catch {
 				FileOutputStream fo = new FileOutputStream(new File(voiceName));
 				byte[] buf = new byte[1024];
 				int length = 0;
-				System.out.println("开始下载:" + url);
+				//System.out.println("寮�濮嬩笅杞�:" + url);
 				while ((length = in.read(buf, 0, buf.length)) != -1) {
 					fo.write(buf, 0, length);
 				}
 				in.close();
 				fo.close();
-				System.out.println(voiceName + "下载完成");
+				//System.out.println(voiceName + "涓嬭浇瀹屾垚");
 		} catch (Exception e) {
-			System.out.println("下载失败");
+			System.out.println("涓嬭浇澶辫触");
 		}
 	}
 	
